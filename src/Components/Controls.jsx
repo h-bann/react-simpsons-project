@@ -1,9 +1,16 @@
 import React, { Component } from "react";
+import DeleteBtn from "./DeleteBtn";
+import LikeBtn from "./LikeBtn";
 
 class Controls extends Component {
   render() {
-    const { text } = this.props;
-    return <button>{text}</button>;
+    const { onDeleteClick, onLikeClick } = this.props;
+    return (
+      <>
+        <DeleteBtn text="Delete" onDeleteClick={onDeleteClick} />
+        <LikeBtn text="Like" onLikeClick={onLikeClick} />
+      </>
+    );
   }
 }
 

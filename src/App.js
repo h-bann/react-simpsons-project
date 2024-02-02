@@ -17,10 +17,23 @@ class App extends Component {
     this.setState({ quotesArray: quotes });
   };
 
+  onDeleteClick = () => {
+    console.log("This is deleted");
+const 
+  };
+
+  onLikeClick = () => {
+    console.log("This is liked");
+  };
+
   render() {
     return this.state.quotesArray ? (
       <>
-        <Interface quotesArray={this.state.quotesArray} />
+        <Interface
+          quotesArray={this.state.quotesArray}
+          onDeleteClick={this.onDeleteClick}
+          onLikeClick={this.onLikeClick}
+        />
       </>
     ) : (
       <p>Loading</p>

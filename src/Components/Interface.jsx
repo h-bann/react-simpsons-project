@@ -4,10 +4,17 @@ import Character from "./Character";
 
 class Interface extends Component {
   render() {
-    return this.props.quotesArray.map((item) => {
-      console.log(item);
+    const { onDeleteClick, onLikeClick } = this.props;
 
-      return <Character key={uuidv4()} {...item} />;
+    return this.props.quotesArray.map((item) => {
+      return (
+        <Character
+          key={uuidv4()}
+          {...item}
+          onDeleteClick={onDeleteClick}
+          onLikeClick={onLikeClick}
+        />
+      );
     });
   }
 }
