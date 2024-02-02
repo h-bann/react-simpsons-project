@@ -14,12 +14,20 @@ class App extends Component {
       `https://thesimpsonsquoteapi.glitch.me/quotes?count=10`
     );
     const quotes = data.data;
+    for (let i = 0; i < quotes.length; i++) {
+      quotes[i].id = i + 1;
+    }
+
     this.setState({ quotesArray: quotes });
   };
 
-  onDeleteClick = () => {
-    console.log("This is deleted");
-const 
+  onDeleteClick = (id) => {
+    const quotesArray = [...this.state.quotesArray];
+    const index = quotesArray.findIndex((item) => item.id === id);
+    console.log(index);
+    quotesArray.splice(index, 1);
+
+    this.setState({ quotesArray });
   };
 
   onLikeClick = () => {

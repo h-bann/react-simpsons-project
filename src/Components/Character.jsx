@@ -6,13 +6,18 @@ import Controls from "./Controls";
 
 class Character extends Component {
   render() {
-    const { onDeleteClick, onLikeClick } = this.props;
+    const { id, character, quote, image, onDeleteClick, onLikeClick } =
+      this.props;
     return (
-      <div>
-        <Name character={this.props.character} />
-        <Quote quote={this.props.quote} />
-        <Image image={this.props.image} />
-        <Controls onDeleteClick={onDeleteClick} onLikeClick={onLikeClick} />
+      <div key={id}>
+        <Name character={character} />
+        <Quote quote={quote} />
+        <Image image={image} />
+        <Controls
+          onDeleteClick={onDeleteClick}
+          onLikeClick={onLikeClick}
+          id={id}
+        />
       </div>
     );
   }
