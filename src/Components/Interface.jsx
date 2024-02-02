@@ -4,7 +4,6 @@ import Character from "./Character";
 
 class Interface extends Component {
   render() {
-    console.log(this.props);
     const { onDeleteClick, onLikeClick } = this.props;
 
     return this.props.quotesArray.map((item) => {

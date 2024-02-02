@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { Component } from "react";
 import Interface from "./Components/Interface";
+import Search from "./Components/Search";
 
 class App extends Component {
   state = {};
@@ -30,13 +31,25 @@ class App extends Component {
     this.setState({ quotesArray });
   };
 
-  onLikeClick = () => {
-    console.log("This is liked");
+  onLikeClick = () => {};
+
+  userInput = (searchValue) => {
+    this.setState({ userInput: searchValue });
+  };
+
+  onSearchClick = () => {
+    const quotesArray = [...this.state.quotesArray];
+    const filteredCharacter = quotesArray.filter((userInput) => {
+      return userInput.character.toLowerCase().includes(this.state.userInput);
+    });
+    this.setState({ filteredCharacter: filteredCharacter });
   };
 
   render() {
+    console.log(this.state);
     return this.state.quotesArray ? (
       <>
+        <Search onSearchClick={this.onSearchClick} userInput={this.userInput} />
         <Interface
           quotesArray={this.state.quotesArray}
           onDeleteClick={this.onDeleteClick}

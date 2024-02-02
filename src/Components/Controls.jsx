@@ -5,7 +5,6 @@ import LikeBtn from "./LikeBtn";
 class Controls extends Component {
   render() {
     const { id, onDeleteClick, onLikeClick } = this.props;
-    console.log(id);
     return (
       <>
         <DeleteBtn text="Delete" onDeleteClick={onDeleteClick} id={id} />
