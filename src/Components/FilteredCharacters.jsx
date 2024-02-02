@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import Character from "./Character";
 
-class Interface extends Component {
+class FilteredCharacters extends Component {
   render() {
     const { onDeleteClick, onLikeClick } = this.props;
 
-    return this.props.quotesArray.map((item) => {
+    return this.props.filteredCharacter.map((item) => {
       return (
         <Character
           {...item}
@@ -17,4 +17,4 @@ class Interface extends Component {
   }
 }
 
-export default Interface;
+export default FilteredCharacters;

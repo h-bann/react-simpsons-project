@@ -42,11 +42,11 @@ class App extends Component {
     const filteredCharacter = quotesArray.filter((userInput) => {
       return userInput.character.toLowerCase().includes(this.state.userInput);
     });
-    this.setState({ filteredCharacter: filteredCharacter });
+    this.setState({ quotesArray: filteredCharacter });
   };
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     return this.state.quotesArray ? (
       <>
         <Search onSearchClick={this.onSearchClick} userInput={this.userInput} />
