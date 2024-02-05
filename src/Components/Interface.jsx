@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Character from "./Character";
+import Character from "./Characters";
 
 class Interface extends Component {
   render() {

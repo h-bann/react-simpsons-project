@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { Component } from "react";
 import Interface from "./Components/Interface";
 import Search from "./Components/Search";
+import LikeBtn from "./Components/LikeBtn";
 
 class App extends Component {
   state = {};
@@ -17,6 +18,7 @@ class App extends Component {
     const quotes = data.data;
     for (let i = 0; i < quotes.length; i++) {
       quotes[i].id = i + 1;
+      quotes[i].toggle = "false";
     }
 
     this.setState({ quotesArray: quotes });
@@ -25,35 +27,42 @@ class App extends Component {
   onDeleteClick = (id) => {
     const quotesArray = [...this.state.quotesArray];
     const index = quotesArray.findIndex((item) => item.id === id);
-    console.log(index);
     quotesArray.splice(index, 1);
 
     this.setState({ quotesArray });
   };
 
-  onLikeClick = () => {};
-
-  userInput = (searchValue) => {
-    this.setState({ userInput: searchValue });
-  };
-
-  onSearchClick = () => {
-    const quotesArray = [...this.state.quotesArray];
-    const filteredCharacter = quotesArray.filter((userInput) => {
-      return userInput.character.toLowerCase().includes(this.state.userInput);
+  onFilter = (searchValue) => {
+    const filteredCharacter = this.state.quotesArray.filter((userInput) => {
+      return userInput.character.toLowerCase().includes(searchValue);
     });
     this.setState({ quotesArray: filteredCharacter });
   };
 
+  onLikeClick = (id) => {
+    const quotesArray = [...this.state.quotesArray];
+    const newQuotesArray = quotesArray.map((item) => {
+      if (item.id === id) {
+        return { ...item, toggle: !item.toggle };
+      }
+
+      return item;
+    });
+    console.log(newQuotesArray);
+
+    this.setState({ quotesArray: newQuotesArray });
+  };
+
   render() {
-    // console.log(this.state);
+    // console.log(this.state.quotesArray);
     return this.state.quotesArray ? (
       <>
-        <Search onSearchClick={this.onSearchClick} userInput={this.userInput} />
+        <Search onFilter={this.onFilter} />
         <Interface
           quotesArray={this.state.quotesArray}
           onDeleteClick={this.onDeleteClick}
           onLikeClick={this.onLikeClick}
+          toggle={this.state.quotesArray}
         />
       </>
     ) : (

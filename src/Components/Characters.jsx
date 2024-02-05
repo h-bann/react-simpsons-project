@@ -6,7 +6,7 @@ import Controls from "./Controls";
 
 class Character extends Component {
   render() {
-    const { id, character, quote, image, onDeleteClick, onLikeClick } =
+    const { toggle, id, character, quote, image, onDeleteClick, onLikeClick } =
       this.props;
     return (
       <div key={id}>
@@ -17,6 +17,7 @@ class Character extends Component {
           onDeleteClick={onDeleteClick}
           onLikeClick={onLikeClick}
           id={id}
+          toggle={toggle}
         />
       </div>
     );

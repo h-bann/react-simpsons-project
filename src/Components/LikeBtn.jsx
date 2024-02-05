@@ -2,8 +2,15 @@ import React, { Component } from "react";
 
 class LikeBtn extends Component {
   render() {
-    const { text, onLikeClick } = this.props;
-    return <button onClick={onLikeClick}>{text}</button>;
+    const { text, toggle, onLikeClick, id } = this.props;
+    return (
+      <button
+        className={!toggle ? "liked" : null}
+        onClick={() => onLikeClick(id)}
+      >
+        {text}
+      </button>
+    );
   }
 }
 

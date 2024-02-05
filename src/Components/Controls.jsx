@@ -4,11 +4,16 @@ import LikeBtn from "./LikeBtn";
 
 class Controls extends Component {
   render() {
-    const { id, onDeleteClick, onLikeClick } = this.props;
+    const { toggle, id, onDeleteClick, onLikeClick } = this.props;
     return (
       <>
         <DeleteBtn text="Delete" onDeleteClick={onDeleteClick} id={id} />
-        <LikeBtn text="Like" onLikeClick={onLikeClick} />
+        <LikeBtn
+          text="Like"
+          onLikeClick={onLikeClick}
+          id={id}
+          toggle={toggle}
+        />
       </>
     );
   }
