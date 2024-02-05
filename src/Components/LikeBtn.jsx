@@ -5,7 +5,7 @@ class LikeBtn extends Component {
     const { text, toggle, onLikeClick, id } = this.props;
     return (
       <button
-        className={!toggle ? "liked" : null}
+        className={!toggle ? "liked" : ""}
         onClick={() => onLikeClick(id)}
       >
         {text}

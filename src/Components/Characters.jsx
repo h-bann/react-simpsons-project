@@ -8,6 +8,8 @@ class Character extends Component {
   render() {
     const { toggle, id, character, quote, image, onDeleteClick, onLikeClick } =
       this.props;
+    console.log(toggle);
+
     return (
       <div key={id}>
         <Name character={character} />

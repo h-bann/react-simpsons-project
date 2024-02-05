@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { Component } from "react";
 import Interface from "./Components/Interface";
 import Search from "./Components/Search";
-import LikeBtn from "./Components/LikeBtn";
+import Likes from "./Components/Likes";
 
 class App extends Component {
   state = {};
@@ -45,24 +45,22 @@ class App extends Component {
       if (item.id === id) {
         return { ...item, toggle: !item.toggle };
       }
-
       return item;
     });
-    console.log(newQuotesArray);
 
     this.setState({ quotesArray: newQuotesArray });
   };
 
   render() {
-    // console.log(this.state.quotesArray);
+    console.log(this.state.quotesArray);
     return this.state.quotesArray ? (
       <>
         <Search onFilter={this.onFilter} />
+        <Likes quotesArray={this.state.quotesArray} />
         <Interface
           quotesArray={this.state.quotesArray}
           onDeleteClick={this.onDeleteClick}
           onLikeClick={this.onLikeClick}
-          toggle={this.state.quotesArray}
         />
       </>
     ) : (
