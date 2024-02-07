@@ -15,6 +15,7 @@ class Character extends Component {
       image,
       onDeleteClick,
       onLikeClick,
+      totalLikes,
     } = this.props;
 
     if (characterDirection === "Right") {
@@ -28,6 +29,7 @@ class Character extends Component {
                 <Controls
                   onDeleteClick={onDeleteClick}
                   onLikeClick={onLikeClick}
+                  totalLikes={totalLikes}
                   id={id}
                   toggle={toggle}
                 />

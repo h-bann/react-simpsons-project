@@ -19,7 +19,7 @@ class App extends Component {
       );
     } else {
       data = await axios.get(
-        `https://thesimpsonsquoteapi.glitch.me/quotes?count=5&character=${e}`
+        `https://thesimpsonsquoteapi.glitch.me/quotes?count=50&character=${e}`
       );
     }
     const quotes = data.data;
@@ -56,13 +56,13 @@ class App extends Component {
   };
 
   render() {
-    // console.log(this.state.quotesArray);
-    const { quotesArray } = this.state;
+    console.log(this.state);
+    const { quotesArray, totalLikes } = this.state;
 
     return this.state.quotesArray ? (
       <>
         <Search onSearch={this.onSearch} />
-        <Likes quotesArray={quotesArray} />
+        <Likes quotesArray={quotesArray} totalLikes={totalLikes} />
         <Interface
           quotesArray={quotesArray}
           onDeleteClick={this.onDeleteClick}

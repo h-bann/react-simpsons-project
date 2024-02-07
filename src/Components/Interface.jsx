@@ -3,7 +3,7 @@ import Character from "./Characters";
 
 class Interface extends Component {
   render() {
-    const { onDeleteClick, onLikeClick } = this.props;
+    const { onDeleteClick, onLikeClick, totalLikes } = this.props;
 
     return this.props.quotesArray.map((item) => {
       return (
@@ -12,6 +12,7 @@ class Interface extends Component {
             {...item}
             onDeleteClick={onDeleteClick}
             onLikeClick={onLikeClick}
+            totalLikes={totalLikes}
           />
         </div>
       );

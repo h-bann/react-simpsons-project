@@ -2,8 +2,8 @@ import React, { Component } from "react";
 
 class Likes extends Component {
   render() {
-    const { quotesArray } = this.props;
-    let totalLikes = 0;
+    const { quotesArray, totalLikes } = this.props;
+
     quotesArray.forEach((item) => {
       if (!item.toggle) {
         totalLikes++;
