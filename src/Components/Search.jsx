@@ -7,7 +7,7 @@ class Search extends Component {
         <div>
           <label>Search Characters</label>
 
-          <input onInput={this.props.onSearch}></input>
+          <input onInput={this.props.onSearch} placeholder="Search"></input>
         </div>
       </>
     );

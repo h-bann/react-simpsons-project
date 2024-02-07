@@ -12,9 +12,16 @@ class App extends Component {
   }
 
   getSimpsonsApiData = async (e) => {
-    const data = await axios.get(
-      `https://thesimpsonsquoteapi.glitch.me/quotes?count=50&character=${e}`
-    );
+    let data;
+    if (e === undefined) {
+      data = await axios.get(
+        `https://thesimpsonsquoteapi.glitch.me/quotes?count=5&character=${""}`
+      );
+    } else {
+      data = await axios.get(
+        `https://thesimpsonsquoteapi.glitch.me/quotes?count=5&character=${e}`
+      );
+    }
     const quotes = data.data;
     for (let i = 0; i < quotes.length; i++) {
       quotes[i].id = i + 1;
@@ -50,12 +57,14 @@ class App extends Component {
 
   render() {
     // console.log(this.state.quotesArray);
+    const { quotesArray } = this.state;
+
     return this.state.quotesArray ? (
       <>
         <Search onSearch={this.onSearch} />
-        <Likes quotesArray={this.state.quotesArray} />
+        <Likes quotesArray={quotesArray} />
         <Interface
-          quotesArray={this.state.quotesArray}
+          quotesArray={quotesArray}
           onDeleteClick={this.onDeleteClick}
           onLikeClick={this.onLikeClick}
         />
