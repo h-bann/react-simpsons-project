@@ -15,7 +15,7 @@ class App extends Component {
     let data;
     if (e === undefined) {
       data = await axios.get(
-        `https://thesimpsonsquoteapi.glitch.me/quotes?count=5&character=${""}`
+        `https://thesimpsonsquoteapi.glitch.me/quotes?count=50&character=${""}`
       );
     } else {
       data = await axios.get(
