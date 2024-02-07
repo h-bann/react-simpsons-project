@@ -7,11 +7,13 @@ class Interface extends Component {
 
     return this.props.quotesArray.map((item) => {
       return (
-        <Character
-          {...item}
-          onDeleteClick={onDeleteClick}
-          onLikeClick={onLikeClick}
-        />
+        <div className="container">
+          <Character
+            {...item}
+            onDeleteClick={onDeleteClick}
+            onLikeClick={onLikeClick}
+          />
+        </div>
       );
     });
   }
