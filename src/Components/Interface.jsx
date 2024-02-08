@@ -11,12 +11,23 @@ class Interface extends Component {
     this.getSimpsonsApiData();
   }
 
+  // getSimpsonsApiData = async (e) => {
+  //   const data = await axios.get(
+  //     `https://thesimpsonsquoteapi.glitch.me/quotes?count=50&character=${
+  //       e ? e : ""
+  //     }`
+  //   );
+
   getSimpsonsApiData = async (e) => {
-    const data = await axios.get(
-      `https://thesimpsonsquoteapi.glitch.me/quotes?count=50&character=${
-        e ? e : ""
-      }`
-    );
+    let data;
+    e === undefined
+      ? (data = await axios.get(
+          `https://thesimpsonsquoteapi.glitch.me/quotes?count=50&character=${""}`
+        ))
+      : (data = await axios.get(
+          `https://thesimpsonsquoteapi.glitch.me/quotes?count=50&character=${e}`
+        ));
+
     const quotes = data.data;
 
     quotes.forEach((quote, i) => {
@@ -26,6 +37,20 @@ class Interface extends Component {
 
     this.setState({ quotesArray: quotes });
   };
+
+  //  getSimpsonsApiData = async (e) => {
+  //     let data;
+  //     if (e === undefined) {
+  //       data = await axios.get(
+  //         `https://thesimpsonsquoteapi.glitch.me/quotes?count=50&character=${""}`
+  //       );
+  //     } else {
+  //       data = await axios.get(
+  //         `https://thesimpsonsquoteapi.glitch.me/quotes?count=50&character=${e}`
+  //       );
+  //     }
+
+  // };
 
   onDeleteClick = (id) => {
     const quotesArray = [...this.state.quotesArray];
@@ -37,6 +62,7 @@ class Interface extends Component {
 
   onSearch = (e) => {
     this.getSimpsonsApiData(e.target.value);
+    console.log(e.target.value);
   };
 
   onLikeClick = (id) => {
@@ -56,7 +82,7 @@ class Interface extends Component {
 
     return this.state.quotesArray ? (
       <>
-        <Header />
+        <Header onSearch={this.onSearch} />
         <main>
           <Likes quotesArray={quotesArray} totalLikes={totalLikes} />
           <Characters

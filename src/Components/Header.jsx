@@ -7,7 +7,7 @@ class Header extends Component {
     return (
       <header className="header">
         <Title />
-        <Search onSearch={this.onSearch} />
+        <Search onSearch={this.props.onSearch} />
       </header>
     );
   }
