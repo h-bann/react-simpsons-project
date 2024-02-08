@@ -1,22 +1,78 @@
+import axios from "axios";
 import React, { Component } from "react";
-import Character from "./Characters";
+import Likes from "./Likes";
+import Characters from "./Characters";
+import Header from "./Header";
 
 class Interface extends Component {
-  render() {
-    const { onDeleteClick, onLikeClick, totalLikes } = this.props;
+  state = { totalLikes: 0 };
 
-    return this.props.quotesArray.map((item) => {
-      return (
-        <div className="container">
-          <Character
-            {...item}
-            onDeleteClick={onDeleteClick}
-            onLikeClick={onLikeClick}
-            totalLikes={totalLikes}
-          />
-        </div>
-      );
+  componentDidMount() {
+    this.getSimpsonsApiData();
+  }
+
+  getSimpsonsApiData = async (e) => {
+    const data = await axios.get(
+      `https://thesimpsonsquoteapi.glitch.me/quotes?count=50&character=${
+        e ? e : ""
+      }`
+    );
+    const quotes = data.data;
+
+    quotes.forEach((e, i) => {
+      e.id = i++;
+      e.toggle = false;
     });
+    // for (let i = 0; i < quotes.length; i++) {
+    //   quotes[i].id = i + 1;
+    //   quotes[i].toggle = "false";
+    // }
+
+    this.setState({ quotesArray: quotes });
+  };
+
+  onDeleteClick = (id) => {
+    const quotesArray = [...this.state.quotesArray];
+    const index = quotesArray.findIndex((item) => item.id === id);
+    quotesArray.splice(index, 1);
+
+    this.setState({ quotesArray });
+  };
+
+  onSearch = (e) => {
+    this.getSimpsonsApiData(e.target.value);
+  };
+
+  onLikeClick = (id) => {
+    const quotesArray = [...this.state.quotesArray];
+    const newQuotesArray = quotesArray.map((item) => {
+      if (item.id === id) {
+        return { ...item, toggle: !item.toggle };
+      }
+      return item;
+    });
+    this.setState({ quotesArray: newQuotesArray });
+  };
+
+  render() {
+    console.log(this.state);
+    const { quotesArray, totalLikes } = this.state;
+
+    return this.state.quotesArray ? (
+      <>
+        <Header />
+        <main>
+          <Likes quotesArray={quotesArray} totalLikes={totalLikes} />
+          <Characters
+            quotesArray={quotesArray}
+            onDeleteClick={this.onDeleteClick}
+            onLikeClick={this.onLikeClick}
+          />
+        </main>
+      </>
+    ) : (
+      <p>Loading</p>
+    );
   }
 }
 

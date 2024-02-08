@@ -1,70 +1,21 @@
 import React, { Component } from "react";
-import Quote from "./Quote";
-import Image from "./Image";
-import Name from "./Name";
-import Controls from "./Controls";
+import Character from "./Character";
 
-class Character extends Component {
+class Characters extends Component {
   render() {
-    const {
-      toggle,
-      id,
-      character,
-      characterDirection,
-      quote,
-      image,
-      onDeleteClick,
-      onLikeClick,
-      totalLikes,
-    } = this.props;
-
-    if (characterDirection === "Right") {
+    const { onDeleteClick, onLikeClick, totalLikes } = this.props;
+    return this.props.quotesArray.map((item) => {
       return (
-        <>
-          <div key={id} className="character-container ">
-            <div>
-              <Name character={character} />
-              <Quote quote={quote} />
-              <div>
-                <Controls
-                  onDeleteClick={onDeleteClick}
-                  onLikeClick={onLikeClick}
-                  totalLikes={totalLikes}
-                  id={id}
-                  toggle={toggle}
-                />
-              </div>
-            </div>
-            <div>
-              <Image image={image} />
-            </div>
-          </div>
-        </>
+        <Character
+          key={item.id}
+          {...item}
+          onDeleteClick={onDeleteClick}
+          onLikeClick={onLikeClick}
+          totalLikes={totalLikes}
+        />
       );
-    } else {
-      return (
-        <>
-          <div key={id} className="character-container ">
-            <div>
-              <Image image={image} />
-            </div>
-            <div>
-              <Name character={character} />
-              <Quote quote={quote} />
-              <div>
-                <Controls
-                  onDeleteClick={onDeleteClick}
-                  onLikeClick={onLikeClick}
-                  id={id}
-                  toggle={toggle}
-                />
-              </div>
-            </div>
-          </div>
-        </>
-      );
-    }
+    });
   }
 }
 
-export default Character;
+export default Characters;

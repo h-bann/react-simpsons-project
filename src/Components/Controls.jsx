@@ -6,7 +6,7 @@ class Controls extends Component {
   render() {
     const { toggle, id, onDeleteClick, onLikeClick, totalLikes } = this.props;
     return (
-      <>
+      <div className="controls">
         <DeleteBtn text="Delete" onDeleteClick={onDeleteClick} id={id} />
         <LikeBtn
           text="Like"
@@ -15,7 +15,7 @@ class Controls extends Component {
           id={id}
           toggle={toggle}
         />
-      </>
+      </div>
     );
   }
 }

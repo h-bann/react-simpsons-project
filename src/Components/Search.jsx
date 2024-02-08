@@ -3,13 +3,10 @@ import React, { Component } from "react";
 class Search extends Component {
   render() {
     return (
-      <>
-        <div>
-          <label>Search Characters</label>
-
-          <input onInput={this.props.onSearch} placeholder="Search"></input>
-        </div>
-      </>
+      <div className="search-container">
+        <label>Search Characters</label>
+        <input onInput={this.props.onSearch}></input>
+      </div>
     );
   }
 }
