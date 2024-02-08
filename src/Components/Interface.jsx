@@ -19,14 +19,10 @@ class Interface extends Component {
     );
     const quotes = data.data;
 
-    quotes.forEach((e, i) => {
-      e.id = i++;
-      e.toggle = false;
+    quotes.forEach((quote, i) => {
+      quote.id = i++;
+      quote.toggle = false;
     });
-    // for (let i = 0; i < quotes.length; i++) {
-    //   quotes[i].id = i + 1;
-    //   quotes[i].toggle = "false";
-    // }
 
     this.setState({ quotesArray: quotes });
   };
