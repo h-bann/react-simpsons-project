@@ -1,14 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
 import logo from "../logo.webp";
 
-class Title extends Component {
-  render() {
-    return (
-      <div className="title">
-        <img className="logo" src={logo}></img>
-      </div>
-    );
-  }
-}
+const Title = () => {
+  return (
+    <div className="title">
+      <img className="logo" src={logo} alt="Logo"></img>
+    </div>
+  );
+};
 
 export default Title;

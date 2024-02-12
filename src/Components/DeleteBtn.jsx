@@ -1,10 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 
-class DeleteBtn extends Component {
-  render() {
-    const { text, onDeleteClick, id } = this.props;
-    return <button onClick={() => onDeleteClick(id)}>{text}</button>;
-  }
-}
+const DeleteBtn = (props) => {
+  const { text, onDeleteClick, id } = props;
+
+  return <button onClick={() => onDeleteClick(id)}>{text}</button>;
+};
 
 export default DeleteBtn;

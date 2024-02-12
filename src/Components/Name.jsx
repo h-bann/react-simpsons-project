@@ -1,11 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 
-class Name extends Component {
-  render() {
-    const { character } = this.props;
-
-    return <p className="character">{character}</p>;
-  }
-}
+const Name = (props) => {
+  const { character } = props;
+  return <p className="character">{character}</p>;
+};
 
 export default Name;

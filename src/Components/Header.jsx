@@ -1,16 +1,14 @@
-import React, { Component } from "react";
+import React from "react";
 import Title from "./Title";
 import Search from "./Search";
 
-class Header extends Component {
-  render() {
-    return (
-      <header className="header">
-        <Title />
-        <Search onSearch={this.props.onSearch} />
-      </header>
-    );
-  }
-}
+const Header = (props) => {
+  return (
+    <header className="header">
+      <Title />
+      <Search onSearch={props.onSearch} />
+    </header>
+  );
+};
 
 export default Header;

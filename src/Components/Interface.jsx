@@ -11,22 +11,12 @@ class Interface extends Component {
     this.getSimpsonsApiData();
   }
 
-  // getSimpsonsApiData = async (e) => {
-  //   const data = await axios.get(
-  //     `https://thesimpsonsquoteapi.glitch.me/quotes?count=50&character=${
-  //       e ? e : ""
-  //     }`
-  //   );
-
   getSimpsonsApiData = async (e) => {
-    let data;
-    e === undefined
-      ? (data = await axios.get(
-          `https://thesimpsonsquoteapi.glitch.me/quotes?count=50&character=${""}`
-        ))
-      : (data = await axios.get(
-          `https://thesimpsonsquoteapi.glitch.me/quotes?count=50&character=${e}`
-        ));
+    const data = await axios.get(
+      `https://thesimpsonsquoteapi.glitch.me/quotes?count=50&character=${
+        e ? e : ""
+      }`
+    );
 
     const quotes = data.data;
 
@@ -38,20 +28,6 @@ class Interface extends Component {
     this.setState({ quotesArray: quotes });
   };
 
-  //  getSimpsonsApiData = async (e) => {
-  //     let data;
-  //     if (e === undefined) {
-  //       data = await axios.get(
-  //         `https://thesimpsonsquoteapi.glitch.me/quotes?count=50&character=${""}`
-  //       );
-  //     } else {
-  //       data = await axios.get(
-  //         `https://thesimpsonsquoteapi.glitch.me/quotes?count=50&character=${e}`
-  //       );
-  //     }
-
-  // };
-
   onDeleteClick = (id) => {
     const quotesArray = [...this.state.quotesArray];
     const index = quotesArray.findIndex((item) => item.id === id);
@@ -62,7 +38,6 @@ class Interface extends Component {
 
   onSearch = (e) => {
     this.getSimpsonsApiData(e.target.value);
-    console.log(e.target.value);
   };
 
   onLikeClick = (id) => {
