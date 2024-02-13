@@ -101,3 +101,28 @@ button {
 .text-container {
   width: 400px;
 }
+
+.suggestionBox {
+  text-align: center;
+}
+
+.suggestionBox label {
+  margin-right: 10px;
+}
+
+.suggestionBox input {
+  height: 30px;
+  background-color: rgb(252, 251, 151);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 2px;
+}
+
+.nav a {
+  margin: 5px;
+}
+
+.aboutText {
+  text-align: center;
+  margin-top: 50px;
+}

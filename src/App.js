@@ -1,10 +1,21 @@
-import React, { Component } from "react";
-import Interface from "./Components/Interface";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Contact from "./NotReallyPages/Contact";
+import About from "./NotReallyPages/About";
+import Error from "./NotReallyPages/Error";
+import Home from "./NotReallyPages/Home";
 
-class App extends Component {
-  render() {
-    return <Interface />;
-  }
-}
+const App = () => {
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="about" element={<About />} />
+        <Route path="contact" element={<Contact />} />
+        <Route path="*" element={<Error />} />
+      </Routes>
+    </>
+  );
+};
 
 export default App;

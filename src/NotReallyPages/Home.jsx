@@ -1,7 +1,8 @@
 import React from "react";
+import Interface from "../Components/Interface";
 
 const Home = () => {
-  return <></>;
+  return <Interface />;
 };
 
 export default Home;
