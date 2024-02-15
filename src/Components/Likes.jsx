@@ -1,10 +1,10 @@
 import React from "react";
 
 const Likes = (props) => {
-  const { quotesArray } = props;
+  const { simpsonsState } = props;
   let { totalLikes } = props;
 
-  quotesArray.forEach((item) => {
+  simpsonsState.forEach((item) => {
     if (item.toggle) {
       totalLikes++;
     }

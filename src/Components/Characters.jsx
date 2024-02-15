@@ -4,7 +4,7 @@ import Character from "./Character";
 const Characters = (props) => {
   const { onDeleteClick, onLikeClick, totalLikes } = props;
 
-  return props.quotesArray.map((item) => {
+  return props.simpsonsState.map((item) => {
     return (
       <Character
         key={item.id}

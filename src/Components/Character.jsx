@@ -17,6 +17,53 @@ const Character = (props) => {
     totalLikes,
   } = props;
 
+  // characterDirection === "Right" ? (
+  //   <>
+  //     <div className="character-container">
+  //       <div>
+  //         <div className="text-container">
+  //           <Quote quote={quote} />
+  //           <Name character={character} />
+  //         </div>
+
+  //         <div>
+  //           <Controls
+  //             onDeleteClick={onDeleteClick}
+  //             onLikeClick={onLikeClick}
+  //             totalLikes={totalLikes}
+  //             id={id}
+  //             toggle={toggle}
+  //           />
+  //         </div>
+  //       </div>
+  //       <div>
+  //         <Image image={image} />
+  //       </div>
+  //     </div>
+  //   </>
+  // ) : (
+  //   <>
+  //     <div className="character-container">
+  //       <div>
+  //         <Image image={image} />
+  //       </div>
+  //       <div className="text-container">
+  //         <Quote quote={quote} />
+  //         <Name character={character} />
+
+  //         <div>
+  //           <Controls
+  //             onDeleteClick={onDeleteClick}
+  //             onLikeClick={onLikeClick}
+  //             id={id}
+  //             toggle={toggle}
+  //           />
+  //         </div>
+  //       </div>
+  //     </div>
+  //   </>
+  // );
+
   if (characterDirection === "Right") {
     return (
       <>
@@ -43,30 +90,29 @@ const Character = (props) => {
         </div>
       </>
     );
-  } else {
-    return (
-      <>
-        <div className="character-container">
-          <div>
-            <Image image={image} />
-          </div>
-          <div className="text-container">
-            <Quote quote={quote} />
-            <Name character={character} />
+  }
+  return (
+    <>
+      <div className="character-container">
+        <div>
+          <Image image={image} />
+        </div>
+        <div className="text-container">
+          <Quote quote={quote} />
+          <Name character={character} />
 
-            <div>
-              <Controls
-                onDeleteClick={onDeleteClick}
-                onLikeClick={onLikeClick}
-                id={id}
-                toggle={toggle}
-              />
-            </div>
+          <div>
+            <Controls
+              onDeleteClick={onDeleteClick}
+              onLikeClick={onLikeClick}
+              id={id}
+              toggle={toggle}
+            />
           </div>
         </div>
-      </>
-    );
-  }
+      </div>
+    </>
+  );
 };
 
 export default Character;
