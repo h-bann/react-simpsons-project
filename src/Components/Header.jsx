@@ -8,7 +8,7 @@ const Header = (props) => {
     <header className="header">
       <Nav />
       <Title />
-      <Search onSearch={props.onSearch} />
+      <Search onSearch={props.onSearch} onResetClick={props.onResetClick} />
     </header>
   );
 };
