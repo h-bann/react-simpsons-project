@@ -13,11 +13,8 @@ const Interface = () => {
   const [totalLikes] = useState(0);
 
   const getSimpsonsApiData = async () => {
-    setCharacterName("");
     const data = await axios.get(
-      `https://thesimpsonsquoteapi.glitch.me/quotes?count=50&character=${
-        characterName ? characterName : ""
-      }`
+      `https://thesimpsonsquoteapi.glitch.me/quotes?count=50&character=${characterName}`
     );
 
     const quotesArray = data.data;
@@ -43,10 +40,11 @@ const Interface = () => {
     getSimpsonsApiData();
   };
 
-  const onResetClick = () => {
+  const onResetClick = useCallback(() => {
+    setCharacterName("");
     localStorage.clear();
     getSimpsonsApiData();
-  };
+  }, []);
 
   const onDeleteClick = useCallback(
     (id) => {
