@@ -5,7 +5,6 @@ const Search = (props) => {
     <div className="search-container">
       <label>Search Characters</label>
       <input onInput={props.onInput}></input>
-      <button onClick={props.onSearchClick}>Search</button>
       <button onClick={props.onResetClick}>Reset</button>
     </div>
   );

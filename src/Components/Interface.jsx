@@ -12,7 +12,7 @@ const Interface = () => {
   );
   const [totalLikes] = useState(0);
 
-  const getSimpsonsApiData = async () => {
+  const getSimpsonsApiData = useCallback(async () => {
     const data = await axios.get(
       `https://thesimpsonsquoteapi.glitch.me/quotes?count=50&character=${characterName}`
     );
@@ -25,28 +25,22 @@ const Interface = () => {
     });
 
     setSimpsonsState(quotesArray);
-  };
+  }, [characterName]);
 
   useEffect(() => {
     getSimpsonsApiData();
-  }, []);
+  }, [getSimpsonsApiData]);
 
   const onInput = (e) => {
     setCharacterName(e.target.value);
     storeInLocal("searchedCharacter", e.target.value);
   };
 
-  const onSearchClick = () => {
-    if (characterName) {
-      getSimpsonsApiData();
-    }
-  };
-
   const onResetClick = useCallback(() => {
     setCharacterName("");
     localStorage.clear();
     getSimpsonsApiData();
-  }, []);
+  }, [getSimpsonsApiData]);
 
   const onDeleteClick = useCallback(
     (id) => {
@@ -73,11 +67,7 @@ const Interface = () => {
 
   return simpsonsState ? (
     <>
-      <Header
-        onInput={onInput}
-        onSearchClick={onSearchClick}
-        onResetClick={onResetClick}
-      />
+      <Header onInput={onInput} onResetClick={onResetClick} />
       <main>
         <Likes simpsonsState={simpsonsState} totalLikes={totalLikes} />
         <Characters
