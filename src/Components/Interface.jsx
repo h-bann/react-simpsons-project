@@ -37,7 +37,9 @@ const Interface = () => {
   };
 
   const onSearchClick = () => {
-    getSimpsonsApiData();
+    if (characterName) {
+      getSimpsonsApiData();
+    }
   };
 
   const onResetClick = useCallback(() => {
