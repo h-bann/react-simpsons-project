@@ -4,7 +4,7 @@ const Search = (props) => {
   return (
     <div className="search-container">
       <label>Search Characters</label>
-      <input onInput={props.onInput}></input>
+      <input ref={props.inputRef} onInput={props.onInput}></input>
       <button onClick={props.onResetClick}>Reset</button>
     </div>
   );

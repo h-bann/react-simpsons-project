@@ -8,7 +8,11 @@ const Header = (props) => {
     <header className="header">
       <Nav />
       <Title />
-      <Search onInput={props.onInput} onResetClick={props.onResetClick} />
+      <Search
+        inputRef={props.inputRef}
+        onInput={props.onInput}
+        onResetClick={props.onResetClick}
+      />
     </header>
   );
 };

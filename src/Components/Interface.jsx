@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import Likes from "./Likes";
 import Characters from "./Characters";
@@ -11,6 +11,7 @@ const Interface = () => {
     getFromLocal("searchedCharacter") ? getFromLocal("searchedCharacter") : ""
   );
   const [totalLikes] = useState(0);
+  const inputRef = useRef(null);
 
   const getSimpsonsApiData = useCallback(async () => {
     const data = await axios.get(
@@ -40,6 +41,7 @@ const Interface = () => {
     setCharacterName("");
     localStorage.clear();
     getSimpsonsApiData();
+    inputRef.current.value = "";
   }, [getSimpsonsApiData]);
 
   const onDeleteClick = useCallback(
@@ -67,7 +69,11 @@ const Interface = () => {
 
   return simpsonsState ? (
     <>
-      <Header onInput={onInput} onResetClick={onResetClick} />
+      <Header
+        inputRef={inputRef}
+        onInput={onInput}
+        onResetClick={onResetClick}
+      />
       <main>
         <Likes simpsonsState={simpsonsState} totalLikes={totalLikes} />
         <Characters
