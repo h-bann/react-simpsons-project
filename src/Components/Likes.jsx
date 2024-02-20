@@ -1,14 +1,21 @@
 import React from "react";
+import { useState, useEffect } from "react";
 
 const Likes = (props) => {
-  const { simpsonsState } = props;
-  let { totalLikes } = props;
+  const [totalLikes, setTotalLikes] = useState(0);
 
-  simpsonsState.forEach((item) => {
-    if (item.toggle) {
-      totalLikes++;
-    }
-  });
+  const { simpsonsState } = props;
+
+  useEffect(() => {
+    let count = 0;
+    simpsonsState.forEach((item) => {
+      if (item.toggle) {
+        count++;
+      }
+    });
+    setTotalLikes(count);
+  }, [simpsonsState]);
+
   return (
     <div className="likes-container">
       <h4>Number of quotes liked: {totalLikes}</h4>

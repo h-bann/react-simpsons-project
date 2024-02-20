@@ -10,7 +10,6 @@ const Interface = () => {
   const [characterName, setCharacterName] = useState(
     getFromLocal("searchedCharacter") ? getFromLocal("searchedCharacter") : ""
   );
-  const [totalLikes] = useState(0);
   const inputRef = useRef(null);
 
   const getSimpsonsApiData = useCallback(async () => {
@@ -75,7 +74,7 @@ const Interface = () => {
         onResetClick={onResetClick}
       />
       <main>
-        <Likes simpsonsState={simpsonsState} totalLikes={totalLikes} />
+        <Likes simpsonsState={simpsonsState} />
         <Characters
           simpsonsState={simpsonsState}
           onDeleteClick={onDeleteClick}
