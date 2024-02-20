@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import Likes from "./Likes";
 import Characters from "./Characters";
@@ -7,16 +7,19 @@ import { storeInLocal, getFromLocal } from "../storage";
 
 const Interface = () => {
   const [simpsonsState, setSimpsonsState] = useState("");
+  const [characterName, setCharacterName] = useState(
+    getFromLocal("searchedCharacter") ? getFromLocal("searchedCharacter") : ""
+  );
   const [totalLikes] = useState(0);
 
-  const getSimpsonsApiData = useCallback(async () => {
+  const getSimpsonsApiData = async () => {
+    setCharacterName("");
     const data = await axios.get(
       `https://thesimpsonsquoteapi.glitch.me/quotes?count=50&character=${
-        getFromLocal("searchedCharacter")
-          ? getFromLocal("searchedCharacter")
-          : ""
+        characterName ? characterName : ""
       }`
     );
+
     const quotesArray = data.data;
 
     quotesArray.forEach((quote, i) => {
@@ -25,15 +28,19 @@ const Interface = () => {
     });
 
     setSimpsonsState(quotesArray);
-  }, []);
+  };
 
   useEffect(() => {
     getSimpsonsApiData();
-  }, [getSimpsonsApiData]);
+  }, []);
 
-  const onSearch = (e) => {
-    getSimpsonsApiData(e.target.value);
+  const onInput = (e) => {
+    setCharacterName(e.target.value);
     storeInLocal("searchedCharacter", e.target.value);
+  };
+
+  const onSearchClick = () => {
+    getSimpsonsApiData();
   };
 
   const onResetClick = () => {
@@ -66,7 +73,11 @@ const Interface = () => {
 
   return simpsonsState ? (
     <>
-      <Header onSearch={onSearch} onResetClick={onResetClick} />
+      <Header
+        onInput={onInput}
+        onSearchClick={onSearchClick}
+        onResetClick={onResetClick}
+      />
       <main>
         <Likes simpsonsState={simpsonsState} totalLikes={totalLikes} />
         <Characters
